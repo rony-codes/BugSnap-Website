@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BugSnap Beta: turn browser actions into bug reports</title>
+<meta name="description" content="BugSnap is a Chrome extension that records browser interactions and drafts structured, Markdown bug reports. Beta build with a step-by-step manual install guide.">
+<meta name="theme-color" content="#121412">
+<meta property="og:title" content="BugSnap Beta">
+<meta property="og:description" content="Record the steps behind a bug and draft a structured report. Chrome extension, beta.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23c6ff3d'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%230f1400'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-rec" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+<symbol id="i-md" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M6 15V9l3 3 3-3v6M16 9v6m0 0-2-2m2 2 2-2"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+<symbol id="i-flow" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="18" r="2"/><path d="M7 6h5a3 3 0 0 1 3 3v1M7 18h5a3 3 0 0 0 3-3v-1"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+<symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 20h16"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></symbol>
+<symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3zM12 10v5M12 18h.01"/></symbol>
+</defs></svg>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap nav">
+  <a class="brand" href="#top" aria-label="BugSnap home"><span class="mark" aria-hidden="true"><svg class="ic"><use href="#i-rec"/></svg></span>BugSnap</a>
+  <span class="badge">BETA</span>
+  <nav aria-label="Primary"><ul>
+    <li><a href="#workflow">Workflow</a></li><li><a href="#features">Features</a></li><li><a href="#install">Install</a></li><li><a href="#beta">Beta notes</a></li><li><a href="#faq">FAQ</a></li>
+  </ul></nav>
+</div></header>
+
+<main id="main">
+<section class="hero" id="top"><div class="wrap hero-grid">
+  <div>
+    <h1>Turn browser actions into actionable bug reports.</h1>
+    <p class="lead">Record the steps behind a bug, generate a structured report, and share it with your development team. Less manual documentation. More time fixing issues.</p>
+    <div class="cta">
+      <a class="btn primary" data-download data-fallback-label="Open BugSnap Beta releases" href="https://github.com/rony-codes/BugSnap/releases"><svg class="ic" aria-hidden="true"><use href="#i-dl"/></svg><span data-label>Download BugSnap Beta</span></a>
+      <a class="btn" href="#install">How to install</a>
+    </div>
+    <p class="meta"><span data-text="version">v0.1.0-beta.1</span> · <a href="https://github.com/rony-codes/BugSnap" data-href="repo">View source on GitHub</a></p>
+    <p class="meta" data-download-note role="status"></p>
+    <div class="notice"><svg class="ic" aria-hidden="true"><use href="#i-warn"/></svg><p style="margin:0">Beta software: manual installation required. Chrome Web Store distribution is not available yet.</p></div>
+  </div>
+  <figure class="mock" style="margin:0" aria-labelledby="mock-cap">
+    <div class="mock-bar"><span>BugSnap popup + report</span><span>illustration</span></div>
+    <div class="mock-body">
+      <div class="pop" aria-hidden="true"><b>BugSnap <span class="badge">Beta</span></b><span class="fake-btn rec">Start Recording</span><span class="fake-btn">Stop Recording</span><small class="muted">Status: Recording</small></div>
+      <div class="rep"><b>Example report</b><ol>
+        <li>Click “Add to cart”</li><li>Type in “Quantity” field</li><li>Click “Checkout”</li></ol>
+        <span class="fake-btn" style="margin-top:.9rem;width:auto;display:inline-block;padding:.4rem .8rem" aria-hidden="true">Copy Markdown</span></div>
+    </div>
+    <figcaption class="mock-cap" id="mock-cap">Illustrative mockup with sample steps, not a real screenshot. Layout and wording of the real extension may differ.</figcaption>
+  </figure>
+</div></section>
+
+<section id="workflow"><div class="wrap">
+  <h2>From a test session to an issue draft in five steps</h2>
+  <p class="lead">BugSnap records the supported interactions you perform and turns them into a report you can review and edit.</p>
+  <ol class="flow">
+    <li><h3>Start recording</h3><p>Open the popup on the page you are testing.</p></li>
+    <li><h3>Use the site</h3><p>Click, type, and change form fields as you normally would.</p></li>
+    <li><h3>Stop recording</h3><p>BugSnap saves the session to its backend.</p></li>
+    <li><h3>Review the steps</h3><p>Open the report and check each reproduction step.</p></li>
+    <li><h3>Copy Markdown</h3><p>Paste it into GitHub Issues, Jira, Taiga, or similar.</p></li>
+  </ol>
+  <p class="disclaim">BugSnap does not find bugs for you, does not guarantee complete or accurate steps, and does not replace a human tester. Treat every report as a draft to review.</p>
+</div></section>
+
+<section id="features"><div class="wrap">
+  <h2>What the beta does today</h2>
+  <div class="cards">
+    <article class="card wide"><svg class="ic" aria-hidden="true"><use href="#i-rec"/></svg><h3>Browser interaction recording</h3><p>A content script listens for clicks, text input, and field changes on the page you are testing. Password, hidden, and one-time-code fields are recorded without their values.</p></article>
+    <article class="card"><svg class="ic" aria-hidden="true"><use href="#i-list"/></svg><h3>Structured reproduction steps</h3><p>Events become a readable, numbered list instead of raw HTML.</p></article>
+    <article class="card"><svg class="ic" aria-hidden="true"><use href="#i-md"/></svg><h3>Markdown export</h3><p>One button on the report page copies the report as Markdown.</p></article>
+    <article class="card"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg><h3>Shareable reports</h3><p>Each saved session gets a report link served by the BugSnap backend.</p></article>
+    <article class="card"><svg class="ic" aria-hidden="true"><use href="#i-flow"/></svg><h3>A simple manual-testing workflow</h3><p>Start, test, stop, review. No test scripts to write.</p></article>
+    <article class="card wide"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg><h3>Developer-friendly reporting</h3><p>Output is plain Markdown that pastes into the tools your team already uses. Features may have limitations during beta.</p></article>
+  </div>
+</div></section>
+
+<section id="install"><div class="wrap">
+  <h2>Install the beta in Chrome</h2>
+  <p class="lead">This takes about five minutes and needs no command line. You will load the extension from a folder on your computer.</p>
+  <ol class="steps">
+    <li class="step"><div><h3>Download the ZIP</h3>
+      <p>Current version: <strong data-text="version">v0.1.0-beta.1</strong>. File: <code data-text="filename">bugsnap-beta.zip</code></p>
+      <div class="row"><a class="btn primary" data-download data-fallback-label="Open beta releases" href="https://github.com/rony-codes/BugSnap/releases"><svg class="ic" aria-hidden="true"><use href="#i-dl"/></svg><span data-label>Download BugSnap Beta</span></a></div>
+      <p class="muted" data-download-note></p>
+      <p class="muted">Only download releases from the official project repository. Installation is manual, so Chrome will not verify the file for you.</p></div></li>
+    <li class="step"><div><h3>Extract the ZIP</h3>
+      <div class="os"><div><h4>Windows</h4><p>Right-click the ZIP, choose <strong>Extract All…</strong>, pick a folder such as Desktop, then <strong>Extract</strong>.</p></div>
+      <div><h4>macOS</h4><p>Double-click the ZIP in Finder. A folder with the same name appears next to it.</p></div></div>
+      <p><strong>Do not select the ZIP file itself in Chrome.</strong> Chrome needs the extracted folder. Keep the folder somewhere permanent: if you move or delete it, the extension stops working.</p></div></li>
+    <li class="step"><div><h3>Open Chrome Extensions</h3>
+      <p>Click Chrome's address bar, type this address, and press Enter. Pasting works too.</p>
+      <div class="row"><span class="addr"><code id="ext-address">chrome://extensions</code></span>
+      <button class="btn sm" type="button" id="copy-ext"><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg>Copy address</button></div>
+      <p class="muted" id="copy-status" role="status" aria-live="polite">Web pages cannot open chrome:// links, so copy and paste it yourself.</p></div></li>
+    <li class="step"><div><h3>Turn on Developer mode</h3>
+      <p>On the Extensions page, find the <strong>Developer mode</strong> switch in the top-right corner and turn it on. New buttons appear, including <strong>Load unpacked</strong>.</p>
+      <figure class="diagram" style="margin-inline:0"><svg viewBox="0 0 420 110" role="img" aria-label="Diagram: the Developer mode switch sits at the top right of the Chrome Extensions page"><rect x="1" y="1" width="418" height="108" rx="10" fill="none" stroke="#475047"/><text x="16" y="34" fill="#eef2ea" font-size="16" font-family="sans-serif">Extensions</text><text x="270" y="34" fill="#a9b1a4" font-size="13" font-family="sans-serif">Developer mode</text><rect x="368" y="18" width="40" height="22" rx="11" fill="#c6ff3d"/><circle cx="397" cy="29" r="8" fill="#0f1400"/><path d="M388 52v14" stroke="#c6ff3d" stroke-width="2"/><text x="300" y="86" fill="#c6ff3d" font-size="13" font-family="sans-serif">Switch on: top right</text></svg>
+      <figcaption>Illustrative diagram, not a screenshot. Chrome's layout can change between versions.</figcaption></figure></div></li>
+    <li class="step"><div><h3>Click Load unpacked</h3>
+      <p>Click <strong>Load unpacked</strong> and choose the extracted folder that contains <code>manifest.json</code> directly inside it.</p>
+      <figure class="diagram" style="margin-inline:0"><pre class="tree" tabindex="0" aria-label="Folder layout: select the folder that directly contains manifest.json"><span class="ok">bugsnap-beta/        ← select this folder</span>
+  manifest.json
+  background.js
+  content.js
+  popup.html
+  popup.js
+
+<span class="bad">Wrong: an outer folder that only contains another folder</span></pre><figcaption>Common mistake: some extractors create a folder inside a folder. Open folders until you can see <code>manifest.json</code>, then select that folder.</figcaption></figure>
+      <p>BugSnap should now appear in your extensions list.</p></div></li>
+    <li class="step"><div><h3>Pin it and run a test</h3>
+      <ul><li>Click the puzzle-piece icon in Chrome's toolbar and click the pin next to BugSnap.</li>
+      <li>Open the site you want to test and click the BugSnap icon.</li>
+      <li>Click <strong>Start Recording</strong>, do a few clicks and form inputs, then click <strong>Stop Recording</strong>.</li>
+      <li>Click <strong>Open report</strong>, review the steps, and use <strong>Copy Markdown</strong>.</li></ul></div></li>
+  </ol>
+
+  <h3 style="margin-top:3rem">Troubleshooting</h3>
+  <p class="muted">BugSnap has known beta reliability issues. These steps help in many cases, but none is a guaranteed fix.</p>
+  <details><summary>The “Load unpacked” button is missing</summary><div><p>Turn on <strong>Developer mode</strong> at the top right of <code>chrome://extensions</code>. If the switch is locked or missing, your browser may be managed by a school or employer, and you will need to ask your administrator.</p></div></details>
+  <details><summary>Chrome reports a manifest error</summary><div><p>You most likely selected the wrong folder or the ZIP itself. Select the extracted folder that directly contains <code>manifest.json</code>. If the file is missing, download the ZIP again from the official release.</p></div></details>
+  <details><summary>Recording does not start</summary><div><p>Chrome blocks extensions on pages such as <code>chrome://</code> and the Chrome Web Store, so test on a normal website. If the popup says it cannot access the page, reload the tab and try again. This can be a known beta issue, and a reload is a workaround rather than a fix.</p></div></details>
+  <details><summary>The extension says no events were recorded</summary><div><p>Nothing supported was captured. Make sure recording was started on the tab you are using, perform at least one click or text entry, then stop. If it keeps happening, please report it with your browser version and the site you tested.</p></div></details>
+  <details><summary>The first actions are missing</summary><div><p>This is a known beta issue: early actions can be lost, especially on the first load of a page. Wait a moment after starting before you act, and check the report to add anything that is missing.</p></div></details>
+  <details><summary>The report cannot be loaded</summary><div><p>Check your internet connection and wait a little before retrying, since the backend may respond slowly. Make sure you opened the full link from the popup. If it still fails, open an issue with the time of the attempt. Do not post the session ID publicly unless you are comfortable with others viewing that report.</p></div></details>
+</div></section>
+
+<section id="beta"><div class="wrap two">
+  <div><h2>Read this before testing</h2><p class="lead">BugSnap is an early testing build. Help it improve by reporting what breaks.</p>
+    <p><a class="btn" data-href="issues" href="https://github.com/rony-codes/BugSnap/issues"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>Report an issue or give feedback</a></p></div>
+  <div class="beta"><h3>Beta notice</h3><ul>
+    <li>Some recordings may fail or miss the first actions.</li>
+    <li>Review generated reports before sharing them.</li>
+    <li>Avoid recording passwords, one-time codes, payment details, or other sensitive information.</li>
+    <li>Recorded data is sent to the configured backend to create the report link. Anyone who has a report link can open that report.</li>
+    <li>Do not use BugSnap with confidential or production data. See the <a href="privacy.html">privacy notice</a>.</li></ul></div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2>Frequently asked questions</h2>
+  <details><summary>Is BugSnap available on the Chrome Web Store?</summary><div><p>No. It is a beta build distributed as a ZIP and installed manually.</p></div></details>
+  <details><summary>Why do I need Developer mode?</summary><div><p>Chrome only lets you load extensions from a local folder when Developer mode is on. The Chrome Web Store is the other route, and BugSnap is not published there yet.</p></div></details>
+  <details><summary>Does BugSnap require Node.js on my computer?</summary><div><p>No. Node.js is only used to run the backend server, which is already deployed. You just need Chrome and the extension folder.</p></div></details>
+  <details><summary>Where does BugSnap send reports?</summary><div><p>When you stop recording, the extension sends the recorded events to the BugSnap backend at <code data-text="backend">https://bugsnap-9nc9.onrender.com</code>, which stores the session and serves the report page. The backend code has no login or access control, so anyone with a report link can view it. Treat links as shareable.</p></div></details>
+  <details><summary>What should I do if recording fails?</summary><div><p>Work through the <a href="#install">troubleshooting panels</a>, then open an issue with the steps you followed, your browser, and any console errors.</p></div></details>
+  <details><summary>How do I report a bug?</summary><div><p>Open an issue on the <a data-href="issues" href="https://github.com/rony-codes/BugSnap/issues">GitHub issue tracker</a>. Remove passwords, tokens, and personal data first.</p></div></details>
+  <details><summary>Can I uninstall BugSnap?</summary><div><p>Yes. Go to <code>chrome://extensions</code>, find BugSnap, and click <strong>Remove</strong>. Reports already saved on the backend are not deleted by removing the extension.</p></div></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="foot">
+    <div><a class="brand" href="#top"><span class="mark" aria-hidden="true"><svg class="ic"><use href="#i-rec"/></svg></span>BugSnap</a><p>Beta <span data-text="version">v0.1.0-beta.1</span></p></div>
+    <nav aria-label="Project"><h2>Project</h2><ul><li><a data-href="repo" href="https://github.com/rony-codes/BugSnap">GitHub repository</a></li><li><a data-href="releases" href="https://github.com/rony-codes/BugSnap/releases">Releases and downloads</a></li><li><a data-href="issues" href="https://github.com/rony-codes/BugSnap/issues">Issue tracker</a></li></ul></nav>
+    <nav aria-label="Help"><h2>Help</h2><ul><li><a href="#install">Installation guide</a></li><li><a href="#faq">FAQ</a></li><li><a href="privacy.html">Privacy notice</a></li></ul></nav>
+  </div>
+  <p class="copy">Copyright © <span data-text="year">2026</span> <span data-text="holder">Rohan Kumar</span>. All rights reserved. BugSnap is proprietary beta software.</p>
+</div></footer>
+</body>
+</html>

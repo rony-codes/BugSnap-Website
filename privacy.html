@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BugSnap Beta privacy notice</title>
+<meta name="description" content="What the BugSnap beta extension records, where it sends data, and what to avoid.">
+<link rel="stylesheet" href="styles.css"><script type="module" src="app.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap nav"><a class="brand" href="index.html">BugSnap</a><span class="badge">BETA</span><nav aria-label="Primary"><ul><li><a href="index.html#install">Install</a></li></ul></nav></div></header>
+<main id="main" class="wrap prose">
+<h1>Privacy notice</h1>
+<p class="muted">Draft for the beta. Based on the project's source code; the project owner should review it before wider distribution. Last reviewed against the repository on 24 October 2026.</p>
+<h2>What BugSnap records</h2>
+<p>While recording, the extension captures click, input, and change events on the page, including the page's URL, a description and selector of the element, and details of the action. Password, hidden, and one-time-code fields are recorded without their values, but other fields are not, so do not type passwords, OTPs, payment details, or personal data while recording.</p>
+<h2>Where data goes</h2>
+<p>When you click Stop Recording, the events are sent to the BugSnap backend at <code data-text="backend">https://bugsnap-9nc9.onrender.com</code> and stored in a database. Recording state is also kept in Chrome's local extension storage until the session is saved.</p>
+<h2>Who can see reports</h2>
+<p>The backend has no accounts or access control. Each report has a random ID, and anyone who has the report link or ID can open it. Share links only with people who should see that report. This site does not claim reports are private or encrypted.</p>
+<h2>Extension permissions</h2>
+<p>The manifest requests <code>tabs</code>, <code>storage</code>, access to the BugSnap backend, and a content script that loads on all pages.</p>
+<h2>This website</h2>
+<p>This landing page has no analytics, cookies, or forms, and loads no third-party scripts or fonts. Download links go to GitHub, which has its own privacy policy.</p>
+<h2>Deletion and contact</h2>
+<p>There is no self-service deletion for saved reports yet. To ask about a report, open an issue on the <a data-href="issues" href="https://github.com/rony-codes/BugSnap/issues">GitHub issue tracker</a> without including sensitive details.</p>
+<p><a href="index.html">Back to the BugSnap beta page</a></p>
+</main></body></html>
